@@ -45,13 +45,16 @@ async function playTrivia() {
         fisherYatesShuffle(answerChoices)
 
         // Render the question 
-        $('#trivia').append($('<h1>').text(`Question ${questionNumber+=1}: ${triviaObject.question}`))
+        $('#trivia').append($('<h3>').text(`Question ${questionNumber+=1}: ${triviaObject.question}`))
 
         // Render the answer choices in radio button format
         for(let i = 0; i < answerChoices.length; i++) {
             const labelAnswers = $('<label>').attr('for', triviaObject.question).text(answerChoices[i])
             const answers = $('<input>').attr({'type': 'radio', 'id': triviaObject.question, 'name': "trivia", 'value': answerChoices[i]})
-            $('#trivia').append(answers).append(labelAnswers)
+            const div = $('<div>').addClass('inputLabel')
+            div.append(answers)
+            div.append(labelAnswers)
+            $('#trivia').append(div)
         }
 
         // After the JSON data has been rendered, splice it from the array so that the question does not reappear
@@ -77,19 +80,26 @@ function fisherYatesShuffle(arr) {
 
 // Submit button click event handler
 function submit (triviaObject, questionNumber) {
-    
-    // If the value of radio input clicked matches the correct answer, increment score
-    if ($('input[name=trivia]:checked').val() === triviaObject.correct) score += 1
+    // Render the correct answer 
+    $('#trivia').append($('<p>').text(`The correct answer is ${triviaObject.correct}.`))
 
-    // Render the correct answer and score
-    $('#trivia').append($('<p>').text(`The correct answer is ${triviaObject.correct}`))
-    $('#trivia').append($('<p>').text(`You have a total of ${score} points.`))
+    // If the value of radio input clicked matches the correct answer, increment score
+    if ($('input[name=trivia]:checked').val() === triviaObject.correct) {
+        score += 1
+        $('#trivia').append($('<p>').text('Good Job! You were correct!'))
+    } else {
+        $('#trivia').append($('<p>').text('You were incorrect. Keep trying.'))
+    }
+    // Render the total score
+    $('#trivia').append($('<p>').text(score > 1 ? `You have a total of ${score} points.`: `You have a total of ${score} point.`))
 
     // Want the submit button to disappear after clicking the submit button. Instead, a next button or replay button shows up depending if it is the last question
     $('.submit').css('display', 'none')
 
     if(questionNumber == 10) {
-        const replayButton = $('<button>').addClass('replay').text('Replay').on('click', reset)
+        const replayButton = $('<button>').addClass('replay').text('Play Again').on('click', reset)
+        $('#trivia').empty()
+        $('#trivia').append($('<h3>').text('You finished playing the trivia game!'))
         $('#trivia').append(replayButton)
     } else {
         $('#trivia').append($('<button>').addClass('next').text('Next').on('click', playTrivia)) // continue playing the game by executing playTrivia function
