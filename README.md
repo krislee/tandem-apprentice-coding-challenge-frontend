@@ -1,6 +1,6 @@
 # Trivia #
 
-## <ins> How Trivia Game Works </ins> ##
+## <ins> How Trivia Game Works (Frontend) </ins> ##
 
 ### JSON Data ###
 Trivia is a trivia game designed to test your knowledge. JSON data containing a set of trivia questions, incorrect answers, and correct answers are sent from the server set up by Express framework. The ```getTrivia``` function is executed once in the beginning of the game which is determined by the falsiness of ```executed``` variable. When ```getTrivia``` function runs, a GET request is made to the server and the JSON data is stored in the variable ```triviaData```.
