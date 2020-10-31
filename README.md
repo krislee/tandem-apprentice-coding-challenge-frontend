@@ -30,6 +30,8 @@ The submit button is replaced by either a next or replay button depending if it 
 
 However, this code did not grab the value of the radio button. After researching how to check if the radio button is selected, a promising resource from [StackOverFlow](https://stackoverflow.com/questions/18043452/in-jquery-how-do-i-get-the-value-of-a-radio-button-when-they-all-have-the-same) allowed the checked radio button value to be grabbed. 
 
+- Deployment to Github Pages failed. Github Pages was not fetching the data from Heroku server properly. To resolve this issue, frontend repository was deployed to Netlify.
+
 ## <ins> Future Features </ins> ##
 
 - Improve UI 
@@ -39,4 +41,4 @@ However, this code did not grab the value of the radio button. After researching
 Click [here](https://github.com/krislee/tandem-apprentice-coding-challenge-backend) to view the backend repository.
 
 ## <ins> Deployed Trivia Game </ins> ##
-Click [here](https://krislee.github.io/tandem-apprentice-coding-challenge-frontend) to play the game.
+Click [here](https://tandem-apprenticeship-coding-challenge.netlify.app) to play the game.
