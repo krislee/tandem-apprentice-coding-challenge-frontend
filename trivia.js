@@ -3,10 +3,12 @@ let executed = false // Initiate variable that will allow getTrivia function to 
 let score = 0 // Initiate score to 0 which will be incremented in the playTrivia function when the trivia game starts
 let triviaData // Declare variable globally instead of inside playTrivia function so that the playTrivia function can be executed continuously when clicking next. If variable is declared locally inside the playTrivia function, then when the function runs the 2nd time, it will be unitinialized again and we do not want to initialize to the JSON data again because that resets the number of questions again.
 let questionNumber = 0 
+const deployedURL = 'https://tandem-coding-challenge.herokuapp.com/'
+const URL = deployedURL? deployedURL : 'http://localhost:3000/trivia'
 
 // Get JSON data from server
 async function getTrivia() {
-    const response = await fetch('http://localhost:3000/trivia')
+    const response = await fetch(URL)
     const data = await response.json()
     return data
 }
