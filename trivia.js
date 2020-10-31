@@ -1,20 +1,23 @@
 const url = 'http://localhost:3000/trivia'
+let executed = false
+let score = 0
+let copyOfdata
 
 async function getTrivia() {
-    // let triviaObject
-    let score = 0
     const response = await fetch(url)
     const data = await response.json()
     const copyOfdata = await data
-    return await {copyOfdata, score}
+    return await copyOfdata
 }
 
-
-
 async function trivia() {
-    const {copyOfdata, score} = await getTrivia()
-    console.log(copyOfdata, "triviaObject")
-    console.log(score, "score")
+    $('.button').css('display', 'none')
+    if (!executed){
+        copyOfdata = await getTrivia()
+        executed = true
+        console.log(copyOfdata, "triviaObject")
+        console.log(score, "score")
+    } 
 
     let randomIndex
     
@@ -52,7 +55,13 @@ async function trivia() {
         $('#trivia').append($('<p>').text(`You have a total of ${score} points!`))
         $('.submit').css('display', 'none')
         if(copyOfdata.length == 0) {
-            const replayButton = $('<button>').addClass('replay').text('Replay')
+            const replayButton = $('<button>').addClass('replay').text('Replay').on('click', function(){
+                console.log("hi")
+                score = 0
+                executed = false
+                $('#trivia').empty()
+                trivia()
+            })
             $('#trivia').append(replayButton)
         } else {
             $('#trivia').append($('<button>').addClass('next').text('Next').on('click', trivia))
@@ -60,30 +69,9 @@ async function trivia() {
     }))
 }
 
-// $('.next').on('click', function(){
-//     console.log("hi")
-// })
-
-$('.replay').on('click', trivia)
-
-$('.submit').on('click', function (e, answer, score){
-    console.log(e.target.parent)
-    if((input).is(':checked')){
-        if (input.attr('value') === answer) {
-            score += 1
-        } 
-        $('<p>').text(`The correct answer is ${answer}`)
-        $('<p>').text(`You have a total of ${score} points!`)
-    }
-    trivia()
-})
 
 
-
-
-
-
-
+// tandem, shakespear, cat, tiger, cat
 
 function fisherYatesShuffle(arr) {
     for (let i = arr.length -1; i > 0; i--) {
