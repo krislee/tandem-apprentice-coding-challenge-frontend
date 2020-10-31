@@ -30,7 +30,7 @@ async function playTrivia() {
     } 
     
     // Only run the following code block if there are JSON data left to render on browser
-    if(triviaData.length > 0){
+    if(questionNumber <=10){
         
         // Empty the div that contains the previous question, answer choices, submit or next button before rendering the next set of trivia questions, answer choices, and buttons
         $('#trivia').empty()
@@ -63,7 +63,7 @@ async function playTrivia() {
     
     console.log(triviaData)
 
-    // After the question and answer choices are rendered, render the submit button. When submit button is clicked, a callback function is run.
+    // After the question and answer choices are rendered, render the submit button. When submit button is clicked, event handler is run.
     $('#trivia').append($('<button>').addClass('submit').text('Submit').on('click', function(e) {
 
         // If the value of radio input clicked matches the correct answer, increment score
@@ -76,9 +76,9 @@ async function playTrivia() {
         // Want the submit button to disappear after clicking the submit button. Instead, a next button or replay button shows up depending if it is the last question
         $('.submit').css('display', 'none')
 
-        if(triviaData.length == 0) {
+        if(questionNumber == 10) {
             const replayButton = $('<button>').addClass('replay').text('Replay').on('click', function(){
-                // reset score and executed so that JSON data is fetched from the server again 
+                // reset score and questionNumber and reassigned executed to false so that JSON data is fetched from the server again 
                 score = 0
                 executed = false
                 questionNumber = 0
