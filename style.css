@@ -24,3 +24,8 @@ h3 {
     width: 60vw;
 }
 
+#intro {
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+}
