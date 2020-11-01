@@ -91,7 +91,7 @@ function submit (triviaObject, questionNumber) {
         score += 1
         $('#trivia').append($('<p>').text('Good Job! You were correct!'))
     } else {
-        $('#trivia').append($('<p>').text('You were incorrect. Keep trying.'))
+        $('#trivia').append($('<p>').text(questionNumber != 10 ? 'You were incorrect. Keep trying.': 'You were incorrect.'))
     }
     // Render the total score
     $('#trivia').append($('<p>').text(score > 1 ? `You have a total of ${score} points.`: `You have a total of ${score} point.`))
@@ -99,13 +99,19 @@ function submit (triviaObject, questionNumber) {
     // Want the submit button to disappear after clicking the submit button. Instead, a next button or replay button shows up depending if it is the last question
     $('.submit').css('display', 'none')
 
-    if(questionNumber == 10) {
+    $('#trivia').append($('<button>').addClass('next').text('Next').on('click', next)) // continue playing the game by executing playTrivia function
+    
+}
+
+// Next button click event handler
+function next() {
+    if(questionNumber >= 10) {
         const replayButton = $('<button>').addClass('replay').text('Play Again').on('click', reset)
         $('#trivia').empty()
         $('#trivia').append($('<h3>').text('You finished playing the trivia game!'))
         $('#trivia').append(replayButton)
     } else {
-        $('#trivia').append($('<button>').addClass('next').text('Next').on('click', playTrivia)) // continue playing the game by executing playTrivia function
+        playTrivia()
     }
 }
 
