@@ -42,3 +42,5 @@ Click [here](https://github.com/krislee/tandem-apprentice-coding-challenge-backe
 
 ## <ins> Deployed Trivia Game </ins> ##
 Click [here](https://tandem-apprenticeship-coding-challenge.netlify.app) to play the game.
+
+Please note that when you load the game for the first time, it may take up to five seconds to load. Happy playing!
