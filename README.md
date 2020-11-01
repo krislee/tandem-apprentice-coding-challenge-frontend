@@ -37,7 +37,7 @@ However, this code did not grab the value of the radio button. After researching
 - Improve UI 
 - Use a frontend framework i.e. Vue
 
-## ## <ins> Backend </ins> ##
+## <ins> Backend </ins> ##
 Click [here](https://github.com/krislee/tandem-apprentice-coding-challenge-backend) to view the backend repository.
 
 ## <ins> Deployed Trivia Game </ins> ##

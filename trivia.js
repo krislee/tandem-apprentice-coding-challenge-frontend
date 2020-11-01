@@ -19,6 +19,9 @@ async function playTrivia() {
     // Make the start button disappear after user clicks start button
     $('.start').css('display', 'none')
 
+    // Make the intro disappear after user clicks start button
+    $('#intro').css('display', 'none')
+
     // If getTrivia function has not been executed yet, which is dependent whether executed variable is true or false, then getTrivia function runs to get the JSON data once
     if (!executed){
         // Store the JSON data from getTrivia function in the global variable
